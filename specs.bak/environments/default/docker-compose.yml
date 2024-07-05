@@ -1,0 +1,29 @@
+version: '3'
+services:
+  electric-flow:
+    image: "electricflow/efserver:latest-windowsservercore"
+    ports:
+      - "8000:8000"
+      - "8443:8443"
+      - "443:443"
+      - "80:80"
+    container_name: "efserver"
+    hostname: "efserver"
+    tty: true
+  iis:
+    image: "electricflow/iis:iis10"
+    ports:
+      - "7808:7800"
+      - "8080:80"
+    container_name: iis
+    tty: true
+    environment:
+    - EF_SERVER_HOST=efserver
+    - EF_SERVER_ADMIN_USER=admin
+    - EF_SERVER_ADMIN_PASS=changeme
+    - EF_RESOURCE_NAME=IIS
+    restart: always
+networks:
+  default:
+    external:
+      name: nat

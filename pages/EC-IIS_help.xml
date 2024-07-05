@@ -1,0 +1,21 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta content="text/html; charset=us-ascii" http-equiv="content-type"/>
+        <title>@PLUGIN_KEY@</title>
+        <link rel="stylesheet" href="../../plugins/@PLUGIN_KEY@/pluginhelp.css" type="text/css" media="screen" />
+    </head>
+    <body>
+        <div class="help">
+            <h1>@PLUGIN_KEY@</h1>
+            <p>
+                Version @PLUGIN_VERSION@
+            </p>
+            <p>
+                Documentation for this plugin is now  available <a href="https://docs.cloudbees.com/docs/cloudbees-cd/latest/plugins/ec-iis" target="_blank">here</a>.
+            </p>
+        </div>
+        </body>
+</html>
+

@@ -1,0 +1,53 @@
+<!--
+
+     Copyright 2015 CloudBees, Inc.
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+
+-->
+<editor>
+	<help>https://docs.cloudbees.com/docs/cloudbees-cd/latest/plugins/ec-iis#AddWebSiteBinding</help>
+	<label>Application server - IIS addwebsitebinding</label>
+	<version>@PLUGIN_VERSION@</version>
+	<description>Adds a binding to a Website.</description>
+	<formElement>
+		<type>entry</type>
+		<label>Website Name:</label>
+		<property>websitename</property>
+		<documentation>The name of the Website to add a binding, e.g.: 'Default Web Site'.</documentation>
+		<required>1</required>
+	</formElement>
+	<formElement>
+		<type>entry</type>
+		<label>Binding Protocol:</label>
+		<property>bindingProtocol</property>
+		<documentation>Protocol of the binding to add.</documentation>
+        <propertyReference>/plugins/@PLUGIN_NAME@/project/dropdowns/bindingProtocols</propertyReference>
+        <defaultValue>http</defaultValue>
+		<required>1</required>
+	</formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Binding Information:</label>
+        <property>bindingInformation</property>
+        <documentation>Information of the binding to add, including the host and the port, e.g.: 'localhost:443', '*:81'.</documentation>
+        <required>1</required>
+    </formElement>
+	<formElement>
+		<type>entry</type>
+		<label>Host Header:</label>
+		<property>hostHeader</property>
+		<documentation>Host headers (also known as domain names or host names) let you assign more than one site to a single IP address on a Web server. E.g., myhost.com.</documentation>
+		<required>0</required>
+	</formElement>
+</editor>

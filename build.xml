@@ -1,0 +1,29 @@
+<project name="EC-IIS" default="package" basedir=".">
+	<description>
+        Build the EC-IIS plugin
+    </description>
+
+    <property name="buildconfigdir" value="../Plugin-In-A-Box/scripts" />
+    
+	<!-- plugin specific properties -->
+	<property name="pluginKey" value="EC-IIS" />
+	<property name="pluginVersion" value="1.0" />
+	<property name="gwtModules" value="ecplugins.iis.ConfigurationManagement" />
+    <property name="package.export.src" value="iis.srcs"/>
+
+    <import file="${buildconfigdir}/buildTargets.xml"/>
+
+    <!-- Package sources for exported utility classes. -->
+    <fileset id="iis.srcs" dir="${dir.src}">
+      <include name="**/PluginConstants.java"/>
+      <include name="**/IISConfigList.java"/>
+      <include name="**/IISConfigListLoader.*"/>
+    </fileset>
+	
+	<fileset id="images" dir="${dir.htdocs}">
+      <include name="**/PluginConstants.java"/>
+      <include name="**/IISConfigList.java"/>
+      <include name="**/IISConfigListLoader.*"/>
+    </fileset>
+	
+</project>

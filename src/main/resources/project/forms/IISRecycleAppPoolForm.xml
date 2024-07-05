@@ -1,0 +1,13 @@
+<editor>
+	<help>https://docs.cloudbees.com/docs/cloudbees-cd/latest/plugins/ec-iis#RecycleAppPool</help>
+	<label>Application server - IIS recycleapppool</label>
+	<version>@PLUGIN_VERSION@</version>
+	<description>This procedure recycles an application pool. When recycling occurs, the worker process currently serving the application pool terminates and the WWW service restarts a new worker process to replace it.</description>
+	<formElement>
+		<type>entry</type>
+		<label>Application Pool Name:</label>
+		<property>applicationPool</property>
+		<required>1</required>
+		<documentation>Provide the name of the application pool to recycle.</documentation>
+	</formElement>
+</editor>

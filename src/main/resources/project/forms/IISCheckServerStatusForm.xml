@@ -1,0 +1,90 @@
+<!--
+
+     Copyright 2015 CloudBees, Inc.
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+
+-->
+<editor>
+	<help>https://docs.cloudbees.com/docs/cloudbees-cd/latest/plugins/ec-iis#CheckServerStatus</help>
+	<label>Application server - IIS checkserverstatus</label>
+	<version>@PLUGIN_VERSION@</version>
+	<description>Checks the status of the specified server.</description>
+	<formElement>
+		<type>entry</type>
+		<label>Configuration Name:</label>
+        <!-- Improvements for CEV-18687 -->
+        <configuration>1</configuration>
+        <!-- End of improvements for CEV-18687 -->
+		<property>configname</property>
+		<required>0</required>
+        <documentation>Provide the name of the configuration that holds connection information for the IIS server. In this case, only credentials are taken from the configuration if the 'Use Credentials' parameter is checked. To view or create a new configuration, go to the Administration -> Plugins tab, and select 'Configure' action for @PLUGIN_KEY@ plugin.</documentation>
+        <htmlDocumentation>Provide the name of the configuration that holds connection information for the IIS server. In this case, only credentials are taken from the configuration if the 'Use Credentials' parameter is checked.<br/><br/>A Configuration defines connection details and can be created by going to plugin <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" target="_blank" href="/commander/pages/@PLUGIN_NAME@/configurations">configuration page</a>.</htmlDocumentation>
+	</formElement>
+	<formElement>
+		<type>checkbox</type>
+		<label>Use Credentials (DEPRECATED):</label>
+		<property>usecredentials</property>
+		<checkedValue>1</checkedValue>
+		<uncheckedValue>0</uncheckedValue>
+		<initiallyChecked>0</initiallyChecked>
+		<required>0</required>
+		<documentation>Indicate if credentials must be used. If checked, the CloudBees CD use the user and password typed in the configuration.</documentation>
+	</formElement>
+    <formElement>
+        <type>credential</type>
+        <label>Credential:</label>
+        <property>credential</property>
+        <required>0</required>
+        <documentation>Specify username and password for check. Will be used for basic authentication.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Link to Check For:</label>
+        <property>checkUrl</property>
+        <required>0</required>
+        <documentation>Url to check. If not given, one will be constructed from IIS conf.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Expected Status:</label>
+        <property>expectStatus</property>
+        <required>0</required>
+        <documentation>3-digit HTTP status to wait for. Default is 200. Can be regular expression, e.g. 200|201.</documentation>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Check Unavailable:</label>
+        <property>unavailable</property>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+        <initiallyChecked>0</initiallyChecked>
+        <required>0</required>
+        <documentation>If checked, the server:port will just be checked
+for availability and URL path and status parameters will be ignored. If server is available, the procedure will fail.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Timeout:</label>
+        <property>checkTimeout</property>
+        <required>0</required>
+        <documentation>Specify connection timeout. Default is 30s.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Retries:</label>
+        <property>checkRetries</property>
+        <required>0</required>
+        <documentation>Specify number of retries. Default is 1. This only affects connecting to server, NOT the status returned by server.</documentation>
+    </formElement>
+</editor>

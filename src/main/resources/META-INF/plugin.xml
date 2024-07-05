@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+    <key>@PLUGIN_KEY@</key>
+    <version>@PLUGIN_VERSION@</version>
+    <label>@PLUGIN_KEY@</label>
+    <description>Internet Information Services Application Server</description>
+    <configure>configurations.xml</configure>
+    <help>EC-IIS_help.xml</help>
+    <author>CloudBees</author>
+    <authorUrl>http://www.electric-cloud.com/support</authorUrl>
+    <category>Application Server</category>
+    <commander-version min="10.3"/>
+    <components>
+        <component name="ConfigurationManagement">
+            <javascript>war/ecplugins.iis.ConfigurationManagement/ecplugins.iis.ConfigurationManagement.nocache.js</javascript>
+        </component>
+    </components>
+    <repositoryUrl>https://github.com/electric-cloud-community/EC-IIS</repositoryUrl>
+
+<detailedDescription>The EC-IIS plugin allows users to interact with the Internet Information Services Server 7 (IIS7), and higher versions, to accomplish tasks such as managing web site and virtual directories using the specific tools of IIS7 through the command line. With this plugin, users can configure IIS from scripts or executables, run tasks such as create a virtual directory and create a website. Also, users can check the status of running processes to see if they ran successfully or if an error existed and determine what caused the error.</detailedDescription>
+<catalogLabel>IIS</catalogLabel>
+</plugin>

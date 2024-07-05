@@ -1,0 +1,237 @@
+<editor>
+    <help>https://docs.cloudbees.com/docs/cloudbees-cd/latest/plugins/ec-iis#DeployAdvanced</help>
+    <label>Application server - IIS deployadvanced</label>
+    <version>@PLUGIN_VERSION@</version>
+    <description>This procedure uses Web Deploy to perform different actions with the IIS application.</description>
+    <formElement>
+        <type>entry</type>
+        <label>MSDeploy (Web Deploy) Path:</label>
+        <property>msdeployPath</property>
+        <required>1</required>
+        <documentation>Provide the relative or absolute path to the MSDeploy executable.</documentation>
+        <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/msdeploy_path</propertyReference>
+    </formElement>
+    <formElement>
+        <type>select</type>
+        <label>Verb:</label>
+        <property>verb</property>
+        <required>1</required>
+        <default>sync</default>
+        <documentation>Web Deploy operations enable you to gather information from, move, or delete deployment objects like Web sites and Web applications. Web Deploy operations are specified on the command line with the -verb argument. The Web Deploy operations are dump, sync, delete, getDependencies, and getSystemInfo.</documentation>
+        <option>
+            <name>Sync</name>
+            <value>sync</value>
+        </option>
+        <option>
+            <name>Dump</name>
+            <value>dump</value>
+        </option>
+        <option>
+            <name>Delete</name>
+            <value>delete</value>
+        </option>
+        <option>
+            <name>getDependencies</name>
+            <value>getDependencies</value>
+        </option>
+        <option>
+            <name>getSystemInfo</name>
+            <value>getSystemInfo</value>
+        </option>
+    </formElement>
+    <formElement>
+        <type>select</type>
+        <label>Source Provider:</label>
+        <property>sourceProvider</property>
+        <required>0</required>
+        <default />
+        <documentation>Providers process specific source or destination data for Web Deploy. For example, the contentPath provider determines how to work with directory, file, site, and application paths. On the Web Deploy command line, the provider name is specified immediately after the -source: or -dest: argument.</documentation>
+        <option><name>appHostAuthOverride</name><value>appHostAuthOverride</value></option>
+        <option><name>appHostConfig</name><value>appHostConfig</value></option>
+        <option><name>appHostSchema</name><value>appHostSchema</value></option>
+        <option><name>appPoolConfig</name><value>appPoolConfig</value></option>
+        <option><name>appPoolEnable32Bit</name><value>appPoolEnable32Bit</value></option>
+        <option><name>appPoolNetFx</name><value>appPoolNetFx</value></option>
+        <option><name>application</name><value>application</value></option>
+        <option><name>appPoolPipeline</name><value>appPoolPipeline</value></option>
+        <option><name>specified</name><value>specified</value></option>
+        <option><name>archiveDir</name><value>archiveDir</value></option>
+        <option><name>auto</name><value>auto</value></option>
+        <option><name>backupManager</name><value>backupManager</value></option>
+        <option><name>backupSettings</name><value>backupSettings</value></option>
+        <option><name>cert</name><value>cert</value></option>
+        <option><name>certStoreSettings</name><value>certStoreSettings</value></option>
+        <option><name>does</name><value>does</value></option>
+        <option><name>comObject32</name><value>comObject32</value></option>
+        <option><name>comObject64</name><value>comObject64</value></option>
+        <option><name>contentPath</name><value>contentPath</value></option>
+        <option><name>contentPathLib</name><value>contentPathLib</value></option>
+        <option><name>sibling</name><value>sibling</value></option>
+        <option><name>createApp</name><value>createApp</value></option>
+        <option><name>dbDacFx</name><value>dbDacFx</value></option>
+        <option><name>dbFullSql</name><value>dbFullSql</value></option>
+        <option><name>dbMySql</name><value>dbMySql</value></option>
+        <option><name>dbSqlite</name><value>dbSqlite</value></option>
+        <option><name>dirPath</name><value>dirPath</value></option>
+        <option><name>fcgiExtConfig</name><value>fcgiExtConfig</value></option>
+        <option><name>filePath</name><value>filePath</value></option>
+        <option><name>gacAssembly</name><value>gacAssembly</value></option>
+        <option><name>gacInstall</name><value>gacInstall</value></option>
+        <option><name>iisApp</name><value>iisApp</value></option>
+        <option><name>machineConfig32</name><value>machineConfig32</value></option>
+        <option><name>machineConfig64</name><value>machineConfig64</value></option>
+        <option><name>manifest</name><value>manifest</value></option>
+        <option><name>metaKey</name><value>metaKey</value></option>
+        <option><name>package</name><value>package</value></option>
+        <option><name>recycleApp</name><value>recycleApp</value></option>
+        <option><name>domains</name><value>domains</value></option>
+        <option><name>regKey</name><value>regKey</value></option>
+        <option><name>regValue</name><value>regValue</value></option>
+        <option><name>rootWebConfig32</name><value>rootWebConfig32</value></option>
+        <option><name>rootWebConfig64</name><value>rootWebConfig64</value></option>
+        <option><name>runCommand</name><value>runCommand</value></option>
+        <option><name>setAcl</name><value>setAcl</value></option>
+        <option><name>urlScanConfig</name><value>urlScanConfig</value></option>
+        <option><name>webServer</name><value>webServer</value></option>
+        <option><name>webServer60</name><value>webServer60</value></option>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Source Provider Object Path:</label>
+        <property>sourceProviderObjectPath</property>
+        <required>0</required>
+        <default />
+        <documentation>Specifies a path of the provider object. Some providers require a path and some do not. If required, the kind of path depends on the provider.</documentation>
+    </formElement>
+    <formElement>
+        <type>textarea</type>
+        <label>Source Provider Settings:</label>
+        <property>sourceProviderSettings</property>
+        <required>0</required>
+        <default />
+        <htmlDocumentation>Provider settings optionally specify additional information about how the source or destination provider will be accessed. &lt;provider&gt; or &lt;provider&gt;=&lt;pathToProviderObject&gt; may be followed by one or more settings. Provider settings are separated from the provider and from each other by a comma and no spaces.<br />For possible values for &lt;providerSetting&gt; and &lt;providerSettingValue&gt;, see <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="https://technet.microsoft.com/en-us/library/dd569001(v=ws.10).aspx" target="_blank">Web Deploy Provider Settings</a>. One frequently used provider setting is computerName, which specifies the name of a source or destination computer.
+        </htmlDocumentation>
+    </formElement>
+    <formElement>
+        <type>select</type>
+        <label>Destination Provider:</label>
+        <property>destProvider</property>
+        <required>0</required>
+        <default />
+        <documentation>Providers process specific source or destination data for Web Deploy. For example, the contentPath provider determines how to work with directory, file, site, and application paths. On the Web Deploy command line, the provider name is specified immediately after the -source: or -dest: argument.</documentation>
+        <option><name>appHostAuthOverride</name><value>appHostAuthOverride</value></option>
+        <option><name>appHostConfig</name><value>appHostConfig</value></option>
+        <option><name>appHostSchema</name><value>appHostSchema</value></option>
+        <option><name>appPoolConfig</name><value>appPoolConfig</value></option>
+        <option><name>appPoolEnable32Bit</name><value>appPoolEnable32Bit</value></option>
+        <option><name>appPoolNetFx</name><value>appPoolNetFx</value></option>
+        <option><name>application</name><value>application</value></option>
+        <option><name>appPoolPipeline</name><value>appPoolPipeline</value></option>
+        <option><name>specified</name><value>specified</value></option>
+        <option><name>archiveDir</name><value>archiveDir</value></option>
+        <option><name>auto</name><value>auto</value></option>
+        <option><name>backupManager</name><value>backupManager</value></option>
+        <option><name>backupSettings</name><value>backupSettings</value></option>
+        <option><name>cert</name><value>cert</value></option>
+        <option><name>certStoreSettings</name><value>certStoreSettings</value></option>
+        <option><name>does</name><value>does</value></option>
+        <option><name>comObject32</name><value>comObject32</value></option>
+        <option><name>comObject64</name><value>comObject64</value></option>
+        <option><name>contentPath</name><value>contentPath</value></option>
+        <option><name>contentPathLib</name><value>contentPathLib</value></option>
+        <option><name>sibling</name><value>sibling</value></option>
+        <option><name>createApp</name><value>createApp</value></option>
+        <option><name>dbDacFx</name><value>dbDacFx</value></option>
+        <option><name>dbFullSql</name><value>dbFullSql</value></option>
+        <option><name>dbMySql</name><value>dbMySql</value></option>
+        <option><name>dbSqlite</name><value>dbSqlite</value></option>
+        <option><name>dirPath</name><value>dirPath</value></option>
+        <option><name>fcgiExtConfig</name><value>fcgiExtConfig</value></option>
+        <option><name>filePath</name><value>filePath</value></option>
+        <option><name>gacAssembly</name><value>gacAssembly</value></option>
+        <option><name>gacInstall</name><value>gacInstall</value></option>
+        <option><name>iisApp</name><value>iisApp</value></option>
+        <option><name>machineConfig32</name><value>machineConfig32</value></option>
+        <option><name>machineConfig64</name><value>machineConfig64</value></option>
+        <option><name>manifest</name><value>manifest</value></option>
+        <option><name>metaKey</name><value>metaKey</value></option>
+        <option><name>package</name><value>package</value></option>
+        <option><name>recycleApp</name><value>recycleApp</value></option>
+        <option><name>domains</name><value>domains</value></option>
+        <option><name>regKey</name><value>regKey</value></option>
+        <option><name>regValue</name><value>regValue</value></option>
+        <option><name>rootWebConfig32</name><value>rootWebConfig32</value></option>
+        <option><name>rootWebConfig64</name><value>rootWebConfig64</value></option>
+        <option><name>runCommand</name><value>runCommand</value></option>
+        <option><name>setAcl</name><value>setAcl</value></option>
+        <option><name>urlScanConfig</name><value>urlScanConfig</value></option>
+        <option><name>webServer</name><value>webServer</value></option>
+        <option><name>webServer60</name><value>webServer60</value></option>
+    </formElement>
+    <formElement>
+        <property>destProviderObjectPath</property>
+        <type>entry</type>
+        <label>Destination Provider Object Path:</label>
+        <default />
+        <required>0</required>
+        <documentation>Specifies a path of the provider object. Some providers require a path and some do not. If required, the kind of path depends on the provider.</documentation>
+    </formElement>
+    <formElement>
+        <property>destProviderSettings</property>
+        <label>Destination Provider Settings:</label>
+        <type>textarea</type>
+        <default />
+        <required>0</required>
+        <htmlDocumentation>Provider settings optionally specify additional information about how the source or destination provider will be accessed. &lt;provider&gt; or &lt;provider&gt;=&lt;pathToProviderObject&gt; may be followed by one or more settings. Provider settings are separated from the provider and from each other by a comma and no spaces.<br />For possible values for &lt;providerSetting&gt; and &lt;providerSettingValue&gt;, see <a style="text-decoration: none !important; border-bottom-style: dashed; border-bottom-width: thin; font-size: inherit; color: inherit; font-family: inherit; border-color: #d8d8d8; border-spacing: 2px;" href="https://technet.microsoft.com/en-us/library/dd569001(v=ws.10).aspx" target="_blank">Web Deploy Provider Settings</a>. One frequently used provider setting is computerName, which specifies the name of a source or destination computer.</htmlDocumentation>
+    </formElement>
+    <formElement>
+        <property>allowUntrusted</property>
+        <label>Allow Untrusted?</label>
+        <type>checkbox</type>
+        <default />
+        <required>0</required>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+        <documentation>If checked, allows untrusted server certificate when using SSL.  .</documentation>
+    </formElement>
+    <formElement>
+        <property>preSync</property>
+        <label>Pre-Sync Command:</label>
+        <type>textarea</type>
+        <default />
+        <required>0</required>
+        <documentation>A command to execute before the synchronization on the destination. For instance, net stop a service.</documentation>
+    </formElement>
+    <formElement>
+        <property>postSync</property>
+        <label>Post-Sync Command:</label>
+        <type>textarea</type>
+        <default />
+        <required>0</required>
+        <documentation>A command to execute after the synchronization on the destination.  For instance, net start a service.</documentation>
+    </formElement>
+    <formElement>
+        <property>additionalOptions</property>
+        <label>Additional Options:</label>
+        <type>textarea</type>
+        <default/>
+        <required>0</required>
+        <documentation>Additional options to be passed to msdeploy.exe. E.g. -retryAttempts=5.</documentation>
+    </formElement>
+    <formElement>
+        <property>setParamFile</property>
+        <label>Set Param File:</label>
+        <type>textarea</type>
+        <default/>
+        <required>0</required>
+        <documentation>Applies parameter settings from an XML file. Can be set to file path or file content.</documentation>
+    </formElement>
+    <formElement>
+        <property>declareParamFile</property>
+        <label>Declare Param File:</label>
+        <type>textarea</type>
+        <default/>
+        <required>0</required>
+        <documentation>Includes parameter declarations from an XML file. Can be set to file path or file content.</documentation>
+    </formElement>
+</editor>

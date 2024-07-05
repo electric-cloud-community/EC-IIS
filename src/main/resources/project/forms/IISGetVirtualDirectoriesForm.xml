@@ -1,0 +1,22 @@
+<editor>
+	<help>https://docs.cloudbees.com/docs/cloudbees-cd/latest/plugins/ec-iis#GetVirtualDirectories</help>
+	<label>Application server - IIS getvirtualdirectories</label>
+	<version>@PLUGIN_VERSION@</version>
+	<description>This procedure returns basic information for all virtual directories defined for the web site (recursively). This procedure is primarily for gathering information rather than performing specific actions.</description>
+	<formElement>
+		<type>entry</type>
+		<label>Host Name:</label>
+		<property>HostName</property>
+		<required>1</required>
+		<value>localhost</value>
+		<documentation>Provide the host name of the IIS server. If the procedure is run on the host itself use 'localhost', the default value.</documentation>
+	</formElement>
+	<formElement>
+		<type>entry</type>
+		<label>Web site ID:</label>
+		<property>WebSiteID</property>
+		<required>1</required>
+		<value>1</value>
+		<documentation>The WebSiteID parameter must be the numeric internal identifier from the server's MetaBase information. The default value is 1.</documentation>
+	</formElement>
+</editor>

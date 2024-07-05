@@ -1,0 +1,319 @@
+<!--
+
+     Copyright 2015 CloudBees, Inc.
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+
+-->
+<editor>
+	<help>https://docs.cloudbees.com/docs/cloudbees-cd/latest/plugins/ec-iis#CreateAppPool</help>
+	<label>Application server - IIS createapppool</label>
+	<version>@PLUGIN_VERSION@</version>
+	<description>Verifies if an Application Pool exists and if it doesn't, an IIS application pool is created.</description>
+	<formElement>
+		<type>entry</type>
+		<label>Application Pool Name:</label>
+		<property>apppoolname</property>
+		<required>1</required>
+		<documentation>The name of the Application Pool to create. i.e: 'FirstAppPool'.</documentation>
+	</formElement>
+    <formElement>
+        <type>entry</type>
+        <label>.NET Framework Version:</label>
+        <property>managedRuntimeVersion</property>
+        <required>0</required>
+        <documentation>Configures the application pool to load a specific version of the .NET Framework. Selecting No Managed Code causes all ASP.NET requests to fail.</documentation>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Enable 32-bit Application:</label>
+        <property>enable32BitAppOnWin64</property>
+        <required>0</required>
+        <checkedValue>True</checkedValue>
+        <uncheckedValue>False</uncheckedValue>
+        <documentation>If set to True for an application pool on a 64-bit operating system, the worker process(es) serving the application pool run in WOW64 (Windows on Windows64) mode. In WOW64 mode, 32-bit processes load only 32-bit applications.</documentation>
+    </formElement>
+    <formElement>
+        <type>select</type>
+        <label>Managed Pipeline Mode:</label>
+        <property>managedPipelineMode</property>
+        <required>0</required>
+        <option>
+            <value>Integrated</value>
+            <name>Integrated</name>
+        </option>
+        <option>
+            <value>Classic</value>
+            <name>Classic</name>
+        </option>
+        <documentation>Configures ASP.NET to run in classic mode as an ISAPI extension or in integrated mode where managed code is integrated into the request-processing pipeline.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Queue Length:</label>
+        <property>queueLength</property>
+        <required>0</required>
+        <documentation>Maximum number of requests that Http.sys queues for the application pool. When the queue is full, new requests receive a 503 "Service Unavailable" response.</documentation>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Start Automatically:</label>
+        <property>autoStart</property>
+        <required>0</required>
+        <checkedValue>True</checkedValue>
+        <uncheckedValue>False</uncheckedValue>
+        <value>True</value>
+        <documentation>If True, the application pool starts on creation or when IIS starts. Starting an application pool sets this property to True. Stopping an application sets this property to False.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Limit:</label>
+        <property>cpu.limit</property>
+        <required>0</required>
+        <documentation>Configures the maximum percentage of CPU time (in 1/1000ths of a percent) that the worker processes in an application pool are allowed to consume over a period of time as indicated by the Limit Interval setting (resetInterval property). If the limit set by Limit (limit property) is exceeded, the event is written to the event log and an optional set of events can be triggered or determined by the Limit Action setting (action property). Setting the value of Limit to 0 disables limiting the worker processes to a percentage of CPU time.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Limit Action:</label>
+        <property>cpu.action</property>
+        <required>0</required>
+        <documentation>If set to NoAction, an event log entry is generated. If set to KillW3WP, the application pool is shut down for the duration of the reset interval and an event log entry is generated.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Limit Interval (minutes):</label>
+        <property>cpu.resetInterval</property>
+        <required>0</required>
+        <documentation>Specifies the reset period (in minutes) for CPU monitoring and throttling limits on the application pool. When the number of minutes elapsed since the last process accounting reset equals the number specified by this property, IIS resets the CPU timers for both the logging and limit intervals. Setting the value of Limit Interval to 0 disables CPU monitoring.</documentation>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Processor Affinity Enabled:</label>
+        <property>cpu.smpAffinitized</property>
+        <required>0</required>
+        <checkedValue>True</checkedValue>
+        <uncheckedValue>False</uncheckedValue>
+        <documentation>If True, Processor Affinity Enabled forces the worker process(es) serving this application pool to run on specific CPUs. This enables sufficient use of CPU caches on multiprocessor servers.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Processor Affinity Mask:</label>
+        <property>cpu.smpProcessorAffinityMask</property>
+        <required>0</required>
+        <documentation>Hexadecimal mask that forces the worker process(es) for this application pool to run on a specific CPU. If processor affinity is enabled, a value of 0 causes an error condition.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Identity:</label>
+        <property>processModel.identityType</property>
+        <required>0</required>
+        <documentation>Configures the application pool to run as a built-in account, such as Network Service (recommended), Local Service, or as a specific user identity.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Idle Timeout (minutes):</label>
+        <property>processModel.idleTimeout</property>
+        <required>0</required>
+        <documentation>Amount of time (in minutes) a worker process remains idle before it shuts down. A worker process is idle if it is not processing requests and no new requests are received.</documentation>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Load User Profile:</label>
+        <property>processModel.loadUserProfile</property>
+        <required>0</required>
+        <checkedValue>True</checkedValue>
+        <uncheckedValue>False</uncheckedValue>
+        <documentation>Specifies whether IIS loads the user profile for an application pool identity. When set to True, IIS loads the user profile for the application pool identity. Set to False when you require IIS 6.0 behavior.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Maximum Worker Processes:</label>
+        <property>processModel.maxProcesses</property>
+        <required>0</required>
+        <documentation>Maximum number of worker processes permitted to service requests for the application pool. If this number is greater than 1, the application pool is called a Web garden.</documentation>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Ping Enabled:</label>
+        <property>processModel.pingingEnabled</property>
+        <required>0</required>
+        <checkedValue>True</checkedValue>
+        <uncheckedValue>False</uncheckedValue>
+        <value>True</value>
+        <documentation>If True, the worker process(es) serving this application pool are pinged periodically to ensure that they are still responsive. This process is called health monitoring.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Ping Maximum Response Time (seconds):</label>
+        <property>processModel.pingResponseTime</property>
+        <required>0</required>
+        <documentation>Maximum time (in seconds) that a worker process is given to respond to a health monitoring ping. If the worker process does not respond, it is terminated.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Ping Period (seconds):</label>
+        <property>processModel.pingInterval</property>
+        <required>0</required>
+        <documentation>Period of time (in seconds) between health monitoring pings sent to the worker process(es) serving this application pool.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Shutdown Time Limit (seconds):</label>
+        <property>processModel.shutdownTimeLimit</property>
+        <required>0</required>
+        <documentation>Period of time (in seconds) a worker process is given to finish processing requests and shut down. If the worker process exceeds the shutdown time limit, it is terminated.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Startup Time Limit (seconds):</label>
+        <property>processModel.startupTimeLimit</property>
+        <required>0</required>
+        <documentation>Period of time (in seconds) a worker process is given to start up and initialize. If the worker process initialization exceeds the startup time limit, it is terminated.</documentation>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Application Pool Process Orphaning Enabled:</label>
+        <property>failure.orphanWorkerProcess</property>
+        <required>0</required>
+        <checkedValue>True</checkedValue>
+        <uncheckedValue>False</uncheckedValue>
+        <documentation>If True, an unresponsive worker process is abandoned (orphaned) instead of terminated. This feature can be used to debug a worker process failure.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Orphan Action Executable:</label>
+        <property>failure.orphanActionExe</property>
+        <required>0</required>
+        <documentation>Executable to run when a worker process is abandoned (orphaned). For example, "C:\dbgtools\ntsd.exe" would invoke NTSD to debug a worker process failure.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Orphan Action Executable Parameters:</label>
+        <property>failure.orphanActionParams</property>
+        <required>0</required>
+        <documentation>Parameters for the executable that is run when a worker process is abandoned (orphaned). For example, -g -p %1% is appropriate if the NTSD is the executable invoked for debugging worker process failures.</documentation>
+    </formElement>
+    <formElement>
+        <type>select</type>
+        <label>Service Unavailable Response Type:</label>
+        <property>failure.loadBalancerCapabilities</property>
+        <required>0</required>
+        <documentation>If set to HttpLevel and the application pool is stopped, Http.sys returns an HTTP 503 error. If set to TcpLevel, Http.sys resets the connection. This is useful if the load balancer recognizes one of the response types and subsequently redirects it.</documentation>
+        <option>
+            <value>TcpLevel</value>
+            <name>TCP Level</name>
+        </option>
+        <option>
+            <value>HttpLevel</value>
+            <name>HTTP Level</name>
+        </option>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Rapid Fail Protection Enabled:</label>
+        <property>failure.rapidFailProtection</property>
+        <required>0</required>
+        <checkedValue>True</checkedValue>
+        <uncheckedValue>False</uncheckedValue>
+        <value>True</value>
+        <documentation>If True, the application pool is shut down if there are a specified number of worker process failures (Maximum Failures) within a specified period (Failure Interval). By default, an application pool is shut down if there are five failures in a five minute period.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Failure Interval (minutes):</label>
+        <property>failure.rapidFailProtectionInterval</property>
+        <required>0</required>
+        <documentation>The time interval (in minutes) during which the specified number of worker process failures (Maximum Failures) must occur before the application pool is shut down by Rapid Fail Protection.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Maximum Failures:</label>
+        <property>failure.rapidFailProtectionMaxCrashes</property>
+        <required>0</required>
+        <documentation>Maximum number of worker process failures permitted before the application pool is shut down by Rapid Fail Protection.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Shutdown Executable:</label>
+        <property>failure.autoShutdownExe</property>
+        <required>0</required>
+        <documentation>Executable to run when an application pool is shut down by Rapid Fail Protection. This can be used to configure a load balancer to redirect traffic for this application to another server.</documentation>
+    </formElement>
+    <formElement>
+        <type>textarea</type>
+        <label>Shutdown Executable Parameters:</label>
+        <property>failure.autoShutdownParams</property>
+        <required>0</required>
+        <documentation>Parameters for the executable to run when an application pool is shut down by Rapid Fail Protection. .</documentation>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Disable Overlapped Recycle:</label>
+        <property>recycling.disallowOverlappingRotation</property>
+        <required>0</required>
+        <checkedValue>True</checkedValue>
+        <uncheckedValue>False</uncheckedValue>
+        <documentation>If True, when the application pool recycles, the existing worker process exits before another worker process is created. Set to True if the worker process loads an application that does not support multiple instances.</documentation>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Disable Recycling for Configuration Changes:</label>
+        <property>recycling.disallowRotationOnConfigChange</property>
+        <required>0</required>
+        <checkedValue>True</checkedValue>
+        <uncheckedValue>False</uncheckedValue>
+        <documentation>If True, the application pool does not recycle when its configuration is changed.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Private Memory Limit (KB):</label>
+        <property>recycling.periodicRestart.privateMemory</property>
+        <required>0</required>
+        <documentation>Maximum amount of private memory (in KB) a worker process can consume before causing the application pool to recycle. A value of 0 means there is no limit.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Regular Time Interval (minutes):</label>
+        <property>recycling.periodicRestart.time</property>
+        <required>0</required>
+        <documentation>Period of time (in minutes) after which an application pool recycles. A value of 0 means the application pool does not recycle at a regular interval.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Request Limit:</label>
+        <property>recycling.periodicRestart.requests</property>
+        <required>0</required>
+        <documentation>Maximum number of requests an application pool can process before it is recycled. A value of 0 means the application pool can process an unlimited number of requests.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Specific Times:</label>
+        <property>recycling.periodicRestart.schedule</property>
+        <required>0</required>
+        <documentation>A set of specific local times, in 24 hour format, when the application pool is recycled.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Virtual Memory Limit (KB):</label>
+        <property>recycling.periodicRestart.memory</property>
+        <required>0</required>
+        <documentation>Maximum amount of virtual memory (in KB) a worker process can consume before causing the application pool to recycle. A value of 0 means there is no limit.</documentation>
+    </formElement>
+    <formElement>
+        <type>textarea</type>
+        <label>Additional Parameters:</label>
+        <property>appPoolAdditionalSettings</property>
+        <required>0</required>
+        <documentation>Additional parameters to pass to appcmd.exe.</documentation>
+    </formElement>
+</editor>

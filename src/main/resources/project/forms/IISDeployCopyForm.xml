@@ -1,0 +1,61 @@
+<!--
+
+     Copyright 2015 CloudBees, Inc.
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+
+-->
+<editor>
+	<help>https://docs.cloudbees.com/docs/cloudbees-cd/latest/plugins/ec-iis#DeployCopy</help>
+	<label>Application server - IIS deploycopy</label>
+	<version>@PLUGIN_VERSION@</version>
+	<description>Copies the application files recursively to the web site application's physical directory.</description>
+	<formElement>
+		<type>entry</type>
+		<label>Destination path:</label>
+		<property>DestinationPath</property>
+		<required>1</required>
+		<documentation>Provide the path to the destination directory. This must be a physical directory, but it may have an IIS virtual directory pointing to it. i.e: 'C:\inetpub\wwwroot\copyTest'.</documentation>
+	</formElement>
+	<formElement>
+		<type>entry</type>
+		<label>Path to XCOPY:</label>
+		<property>ExecPath</property>
+		<required>1</required>
+		<value>xcopy</value>
+		<documentation>Provide the relative or absolute path to the XCOPY (or similar) executable.</documentation>
+	</formElement>
+	<formElement>
+		<type>entry</type>
+		<label>Source path:</label>
+		<property>SourcePath</property>
+		<required>1</required>
+		<documentation>Provide the path to the source directory. i.e: 'C:\inetpub\wwwroot\test'.</documentation>
+	</formElement>
+	<formElement>
+		<type>entry</type>
+		<label>Additional options:</label>
+		<property>AdditionalOptions</property>
+		<required>0</required>
+		<value>/E /K /R /H /I /Y</value>
+		<documentation>Indicate option switches for the XCOPY executable, excluding source and destination directories.
+		The default options are those recommended by Microsoft for ASP.NET and IIS web site deployment; exercise caution when changing these options. &#xA;
+		 /E - Deep copy including empty dirs. &#xA;
+		 /K - Copy attributes. &#xA;
+		 /R - Overwrite read-only files. &#xA;
+		 /H - Copy hidden and system files. &#xA;
+		 /I - If the destination does not exist and you are copying more than one file, it is assumed that the destination is a directory. &#xA;
+		 /Y - Suppress prompting for overwrite confirmation.
+		</documentation>
+	</formElement>
+</editor>

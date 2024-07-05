@@ -1,0 +1,48 @@
+// -*- Groovy -*-
+// build.gradle
+//
+// Gradle build script for EC-IIS plugin.
+//
+// Copyright (c) 2015 Electric Cloud, Inc.
+// All rights reserved
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath group: 'com.electriccloud.plugins', name: 'flow-gradle-plugin', version: '2.4'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations.all {
+    resolutionStrategy {
+        force group: 'com.electriccloud', name: 'ec-test', version: '10.1.0'
+        force group: 'com.electriccloud', name: 'commander-client', version: '10.1.0'
+        force group: 'com.electriccloud', name: 'commander-sdk', version: '6.1.2.1'
+        force group: 'com.electriccloud', name: 'ec_internal', version: '6.1.2.1'
+        force group: 'com.google.gwt', name: 'gwt-user', version: '2.5.0-ec3'
+        force group: 'com.google.gwt', name: 'gwt-dev', version: '2.5.0-ec1'
+
+        cacheChangingModulesFor 0, 'seconds'
+    }
+}
+
+group = "com.electriccloud"
+description = "Plugins : EC-IIS"
+version = "4.0.2"
+
+apply plugin: 'flow-gradle-plugin'
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+
+gwt {
+    modules 'ecplugins.iis.ConfigurationManagement'
+}

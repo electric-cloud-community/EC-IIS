@@ -1,0 +1,22 @@
+<editor>
+	<help>https://docs.cloudbees.com/docs/cloudbees-cd/latest/plugins/ec-iis#StopServer</help>
+	<label>Application server - IIS stopserver</label>
+	<version>@PLUGIN_VERSION@</version>
+	<description>This procedure uses the iisreset utility to stop a server.</description>
+	<formElement>
+		<type>entry</type>
+		<label>Path of the iisreset Utility:</label>
+		<property>execpath</property>
+		<required>1</required>
+		<value>iisreset</value>
+		<documentation>Provide the absolute path of the script utility used to execute this step. If only 'iisreset' is entered, the 'iisreset' tool must be located on the system path 'c:/windows/system32'. i.e: 'iisreset' or 'c:/MyDir/IISFiles/iisreset.exe'.</documentation>
+	</formElement>
+	<formElement>
+		<type>textarea</type>
+		<label>Additional Parameters:</label>
+		<property>additionalParams</property>
+		<required>0</required>
+		<value></value>
+		<documentation>Additional parameters to pass to iisreset utility.</documentation>
+	</formElement>
+</editor>

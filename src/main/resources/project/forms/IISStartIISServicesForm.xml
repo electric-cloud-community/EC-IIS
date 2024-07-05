@@ -1,0 +1,6 @@
+<editor>
+	<help>https://docs.cloudbees.com/docs/cloudbees-cd/latest/plugins/ec-iis#StartIISServices</help>
+	<label>Application server - IIS startiisservices</label>
+	<version>@PLUGIN_VERSION@</version>
+	<description>This procedure starts the necessary services to initialize the IIS server.</description>	
+</editor>

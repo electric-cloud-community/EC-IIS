@@ -1,0 +1,11 @@
+<page>
+    <componentContainer>
+        <title>Edit IIS Configuration</title>
+        <helpLink>/pages/@PLUGIN_NAME@/help</helpLink>
+        <component plugin="@PLUGIN_KEY@"
+                   version="@PLUGIN_VERSION@" 
+                   ref="ConfigurationManagement">
+            <panel>edit</panel>
+        </component>
+    </componentContainer>
+</page>

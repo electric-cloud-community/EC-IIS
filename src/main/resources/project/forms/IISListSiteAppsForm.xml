@@ -1,0 +1,72 @@
+<!--
+
+     Copyright 2015 CloudBees, Inc.
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+
+-->
+<editor>
+	<help>https://docs.cloudbees.com/docs/cloudbees-cd/latest/plugins/ec-iis#ListSiteApps</help>
+	<label>Application server - IIS listsiteapps</label>
+	<version>@PLUGIN_VERSION@</version>
+	<description>List the apps of a Website</description>
+	<formElement>
+		<type>entry</type>
+		<label>Site Name:</label>
+		<property>sitename</property>
+		<required>0</required>
+		<documentation>The name of the site to look for Applications. Blank lists all apps.</documentation>
+	</formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Property Name:</label>
+        <property>propertyName</property>
+        <required>0</required>
+        <value>/myJob/IISApps</value>
+        <documentation>Property to write retrieved data.</documentation>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Fail on Empty List?:</label>
+        <property>failOnEmpty</property>
+        <required>0</required>
+        <checkedValue>1</checkedValue>
+        <uncheckedValue>0</uncheckedValue>
+        <value>1</value>
+        <documentation>If checked, the procedure will fail in case the list of sites is empty.</documentation>
+    </formElement>
+    <formElement>
+        <type>select</type>
+        <label>Dump Format:</label>
+        <property>dumpFormat</property>
+        <required>0</required>
+        <option>
+            <value>xml</value>
+            <name>XML</name>
+        </option>
+        <option>
+            <value>json</value>
+            <name>JSON</name>
+        </option>
+        <option>
+            <value>propertySheet</value>
+            <name>Property sheet</name>
+        </option>
+        <option>
+            <value>raw</value>
+            <name>Raw</name>
+        </option>
+        <value>propertySheet</value>
+        <documentation>Choose the format to represent retrieved data.</documentation>
+    </formElement>
+</editor>

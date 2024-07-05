@@ -1,0 +1,128 @@
+<!--
+
+     Copyright 2015 CloudBees, Inc.
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+
+-->
+<editor>
+    <help>https://docs.cloudbees.com/docs/cloudbees-cd/latest/plugins/ec-iis#Deploy</help>
+    <label>Application server - IIS deploy</label>
+    <version>@PLUGIN_VERSION@</version>
+    <description>Deploys an application using MS Deploy.</description>
+    <formElement>
+        <type>entry</type>
+        <label>MSDeploy (WebDeploy) Path:</label>
+        <property>msdeployPath</property>
+        <required>1</required>
+        <documentation>Provide the relative or absolute path to the MSDeploy (WebDeploy) executable.</documentation>
+        <propertyReference>/plugins/@PLUGIN_NAME@/project/ec_discovery/discovered_data/msdeploy_path</propertyReference>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Deploy Source Path:</label>
+        <property>source</property>
+        <required>1</required>
+        <documentation>A path to package (application.zip) or to directory which contains the content to be deployed.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Destination Website:</label>
+        <property>websiteName</property>
+        <required>1</required>
+        <documentation>A name of the web site to be deployed, e.g. My Site.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Destination Application:</label>
+        <property>applicationPath</property>
+        <required>0</required>
+        <documentation>A name of the application to be deployed. If not provided, the content will be placed under the root application.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Application Pool Name:</label>
+        <property>applicationPool</property>
+        <required>0</required>
+        <value></value>
+        <documentation>Application pool name. If the application pool does not exists, it will be created. If this parameter was not specified, the application will be placed into the default pool.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>.NET Framework Version (Application Pool):</label>
+        <property>managedRuntimeVersion</property>
+        <required>0</required>
+        <value></value>
+        <documentation>.NET Framework version 3.5 includes all the functionality of earlier versions, and introduces new features for the technologies in versions 2.0 and 3.0 and additional technologies in the form of new assemblies.
+To use version 3.5, install the appropriate version of .NET Framework and use product-specific guidelines.</documentation>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <label>Enable 32-bit Applications (Application Pool)?:</label>
+        <property>enable32BitAppOnWin64</property>
+        <required>0</required>
+        <value></value>
+        <checkedValue>true</checkedValue>
+        <uncheckedValue>false</uncheckedValue>
+        <documentation>If set to True for an application pool on a 64-bit operating system, the worker process(es) serving the application pool run in WOW64 (Windows on Windows64) mode. In WOW64 mode, 32-bit processes load only 32-bit applications.</documentation>
+    </formElement>
+    <formElement>
+        <type>select</type>
+        <option>
+            <value>Classic</value>
+            <name>Classic</name>
+        </option>
+        <option>
+            <value>Integrated</value>
+            <name>Integrated</name>
+        </option>
+        <label>Managed Pipeline Mode (Application Pool):</label>
+        <property>managedPipelineMode</property>
+        <required>0</required>
+        <value></value>
+        <documentation>Configures ASP.NET to run in classic mode as an ISAPI extension or in integrated mode where managed code is integrated into the request-processing pipeline.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <property>queueLength</property>
+        <label>Queue Length (Application Pool):</label>
+        <documentation>Maximum number of requests that Http.sys queues for the application pool. When the queue is full, new requests receive a 503 "Service Unavailable" response.</documentation>
+        <value></value>
+        <required>0</required>
+    </formElement>
+    <formElement>
+        <type>checkbox</type>
+        <property>autoStart</property>
+        <label>Start Automatically?:</label>
+        <documentation>If True, the application pool starts on creation or when IIS starts. Starting an application pool sets this property to True. Stopping an application sets this property to False.</documentation>
+        <required>0</required>
+        <checkedValue>true</checkedValue>
+        <uncheckedValue>false</uncheckedValue>
+    </formElement>
+    <formElement>
+        <type>textarea</type>
+        <property>appPoolAdditionalSettings</property>
+        <label>Additional Settings for Application Pool:</label>
+        <htmlDocumentation>Additional settings for application pool configuration, key-value pairs one per line. For the list of available settings please refer to <a target="_blank" href="https://technet.microsoft.com/en-us/library/cc745955.aspx">Managing, Tuning, and Configuring Application Pools in IIS 7.0</a></htmlDocumentation>
+        <value></value>
+        <required>0</required>
+    </formElement>
+    <formElement>
+        <type>textarea</type>
+        <required>0</required>
+        <property>additionalOptions</property>
+        <label>Additional Parameters for Web Deploy:</label>
+        <htmlDocumentation>Additional parameters to pass to Web Deploy. For the list of available settings please refer to <a target="_blank" href="https://technet.microsoft.com/en-us/library/dd568991(v=ws.10).aspx">Web Deploy Command Line Reference</a>. E.g., -enableRule:AppOffline.</htmlDocumentation>
+        <value></value>
+    </formElement>
+</editor>
