@@ -1670,6 +1670,10 @@ alt="htdocs/images/case1/ec-iis7checkserver1.png" />
 
 ## IIS plugin release notes
 
+### 4.0.2
+
+- Plugin moved to community.
+
 ### 4.0.1
 
 -   Removed unnecessary diagnostics to reduce false positive error
